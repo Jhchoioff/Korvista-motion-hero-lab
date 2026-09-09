@@ -7,7 +7,7 @@ A growing internal library of cinematic and signature luxury hero experiments fo
 - **Cinematic / Interior 01 — Warm to Daylight**  
   Dolly-in, lateral movement, dolly-out, crossfade, and cohesive color grading.
 - **Cinematic / Interior Parallax 01 — Depth You Can Feel**  
-  Layered 2.5D parallax with a separated foreground and pointer-responsive depth.
+  Three-scene dolly and lateral sequence, ending with layered 2.5D pointer-responsive depth.
 
 ## Structure
 

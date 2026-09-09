@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="KorVista Design immersive layered parallax interior hero study.">
   <title>Atelier North — Immersive Parallax Interior</title>
+  <link rel="preload" href="../../assets/interior-01/evening.png" as="image">
+  <link rel="preload" href="../../assets/interior-01/daylight.png" as="image">
   <link rel="preload" href="../../assets/interior-parallax/background.png" as="image">
   <link rel="preload" href="../../assets/interior-parallax/foreground.png" as="image">
   <style>
@@ -35,6 +37,35 @@
       cursor: crosshair;
     }
 
+    .scene {
+      position: absolute;
+      inset: -3%;
+      z-index: -3;
+      opacity: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    .scene-one {
+      background-image: url("../../assets/interior-01/evening.png");
+      animation: sceneOne 15s linear infinite, dollyIn 15s ease-in-out infinite;
+    }
+
+    .scene-two {
+      background-image: url("../../assets/interior-01/daylight.png");
+      animation: sceneTwo 15s linear infinite, lateralMove 15s ease-in-out infinite;
+    }
+
+    .scene-three {
+      inset: 0;
+      animation: sceneThree 15s linear infinite, dollyOut 15s ease-in-out infinite;
+    }
+
+    .scene-three-front { z-index: 2; }
+
     .layer {
       position: absolute;
       inset: -4%;
@@ -47,12 +78,10 @@
     }
 
     .layer-background {
-      z-index: -3;
       transform: scale(1.08);
     }
 
     .layer-foreground {
-      z-index: 2;
       transform: scale(1.08);
       filter: drop-shadow(0 22px 28px rgba(24, 17, 10, .16));
     }
@@ -154,13 +183,49 @@
       background: rgba(255,255,255,.55);
     }
 
+    @keyframes sceneOne {
+      0%, 27% { opacity: 1; }
+      34%, 93% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes sceneTwo {
+      0%, 27% { opacity: 0; }
+      34%, 60% { opacity: 1; }
+      67%, 100% { opacity: 0; }
+    }
+
+    @keyframes sceneThree {
+      0%, 60% { opacity: 0; }
+      67%, 93% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes dollyIn {
+      0% { transform: scale(1); }
+      33% { transform: scale(1.16); }
+      34%, 100% { transform: scale(1); }
+    }
+
+    @keyframes lateralMove {
+      0%, 33% { transform: scale(1.09) translateX(-3.5%); }
+      66% { transform: scale(1.09) translateX(3.5%); }
+      67%, 100% { transform: scale(1.09) translateX(-3.5%); }
+    }
+
+    @keyframes dollyOut {
+      0%, 66% { transform: scale(1.16); }
+      99% { transform: scale(1); }
+      100% { transform: scale(1.16); }
+    }
+
     @media (max-width: 700px) {
       .nav { min-height: 72px; }
       .nav-note { display: none; }
       .content { align-content: end; min-height: calc(100svh - 72px); padding-bottom: 112px; }
       h1 { font-size: clamp(3.7rem, 18vw, 6rem); }
       .subcopy { max-width: 88%; }
-      .layer { object-position: 57% center; }
+      .layer, .scene { object-position: 57% center; background-position: 57% center; }
       .wash {
         background:
           linear-gradient(180deg, rgba(18, 13, 10, .10) 8%, rgba(18, 13, 10, .20) 42%, rgba(18, 13, 10, .82) 88%),
@@ -171,14 +236,20 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .layer, .content { transform: none !important; }
+      .scene, .layer, .content { animation: none !important; transform: none !important; }
+      .scene-one { opacity: 1; }
+      .scene-two, .scene-three { display: none; }
       .hero { cursor: default; }
     }
   </style>
 </head>
 <body>
   <main class="hero" id="parallax-hero">
-    <img class="layer layer-background" src="../../assets/interior-parallax/background.png" alt="" aria-hidden="true">
+    <div class="scene scene-one" aria-hidden="true"></div>
+    <div class="scene scene-two" aria-hidden="true"></div>
+    <div class="scene scene-three scene-three-back" aria-hidden="true">
+      <img class="layer layer-background" src="../../assets/interior-parallax/background.png" alt="">
+    </div>
     <div class="wash" aria-hidden="true"></div>
 
     <nav class="nav" aria-label="Primary navigation">
@@ -194,7 +265,9 @@
       </div>
     </section>
 
-    <img class="layer layer-foreground" src="../../assets/interior-parallax/foreground.png" alt="" aria-hidden="true">
+    <div class="scene scene-three scene-three-front" aria-hidden="true">
+      <img class="layer layer-foreground" src="../../assets/interior-parallax/foreground.png" alt="">
+    </div>
     <div class="depth-meter">Move to explore</div>
     <div class="motion-label">Immersive parallax study · 02</div>
   </main>
