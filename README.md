@@ -5,7 +5,9 @@ A growing internal library of cinematic and signature luxury hero experiments fo
 ## Current studies
 
 - **Cinematic / Interior 01 — Warm to Daylight**  
-  Slow dolly-in, lateral movement, crossfade, and cohesive color grading.
+  Dolly-in, lateral movement, dolly-out, crossfade, and cohesive color grading.
+- **Cinematic / Interior Parallax 01 — Depth You Can Feel**  
+  Layered 2.5D parallax with a separated foreground and pointer-responsive depth.
 
 ## Structure
 
@@ -13,12 +15,18 @@ A growing internal library of cinematic and signature luxury hero experiments fo
 dist/
 ├── index.html
 ├── cinematic/
-│   └── interior-01/
+│   ├── interior-01/
+│   │   └── index.html
+│   └── interior-parallax/
 │       └── index.html
 └── assets/
-    └── interior-01/
-        ├── evening.png
-        └── daylight.png
+    ├── interior-01/
+    │   ├── evening.png
+    │   ├── daylight.png
+    │   └── lounge.png
+    └── interior-parallax/
+        ├── background.png
+        └── foreground.png
 ```
 
 ## Add a new study

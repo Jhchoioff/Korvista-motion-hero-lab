@@ -32,6 +32,7 @@
     .collection-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
     .section-label { margin: 0; color: var(--muted); }
     .section-count { color: var(--muted); font-size: .8rem; }
+    .work-list { display: grid; gap: 24px; }
     .work-card { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); min-height: 560px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; overflow: hidden; }
     .card-image { position: relative; min-height: 500px; overflow: hidden; }
     .card-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 55%, rgba(12,12,10,.32)); pointer-events: none; }
@@ -76,19 +77,32 @@
       <section class="collection" aria-labelledby="cinematic-heading">
         <div class="collection-head">
           <p class="section-label" id="cinematic-heading">Cinematic Motion Heroes</p>
-          <span class="section-count">01 study</span>
+          <span class="section-count">02 studies</span>
         </div>
-        <a class="work-card" href="cinematic/interior-01/">
-          <div class="card-image"><img src="assets/interior-01/evening.png" alt="Warm contemporary interior with layered architectural depth"></div>
-          <div class="card-copy">
-            <div>
-              <div class="card-meta">01 · Interior Design</div>
-              <h2>Warm to<br>Daylight</h2>
-              <p class="direction">Slow dolly-in · Lateral movement · Crossfade · Cohesive color grading</p>
+        <div class="work-list">
+          <a class="work-card" href="cinematic/interior-01/">
+            <div class="card-image"><img src="assets/interior-01/evening.png" alt="Warm contemporary interior with layered architectural depth"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">01 · Interior Design</div>
+                <h2>Warm to<br>Daylight</h2>
+                <p class="direction">Dolly-in · Lateral movement · Dolly-out · Cohesive color grading</p>
+              </div>
+              <div class="view"><span>View full hero</span><span aria-hidden="true">↗</span></div>
             </div>
-            <div class="view"><span>View full hero</span><span aria-hidden="true">↗</span></div>
-          </div>
-        </a>
+          </a>
+          <a class="work-card" href="cinematic/interior-parallax/">
+            <div class="card-image"><img src="assets/interior-01/lounge.png" alt="Layered lounge interior prepared for a parallax motion study"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">02 · Interior Design</div>
+                <h2>Depth you<br>can feel</h2>
+                <p class="direction">Layered 2.5D parallax · Foreground separation · Pointer-responsive depth</p>
+              </div>
+              <div class="view"><span>View parallax hero</span><span aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+        </div>
       </section>
       <section class="collection" aria-labelledby="signature-heading">
         <div class="collection-head">
