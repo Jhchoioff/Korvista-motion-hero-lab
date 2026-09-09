@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="KorVista Design cinematic interior hero motion study.">
   <title>Atelier North — Cinematic Interior</title>
+  <link rel="preload" href="../../assets/interior-01/evening.png" as="image">
+  <link rel="preload" href="../../assets/interior-01/daylight.png" as="image">
   <style>
     :root {
       color-scheme: dark;
@@ -41,12 +43,12 @@
 
     .scene-one {
       background-image: url("../../assets/interior-01/evening.png");
-      animation: sceneOne 16s ease-in-out infinite, dollyIn 16s ease-in-out infinite;
+      animation: sceneOne 28s linear infinite, dollyIn 28s ease-in-out infinite;
     }
 
     .scene-two {
       background-image: url("../../assets/interior-01/daylight.png");
-      animation: sceneTwo 16s ease-in-out infinite, lateralMove 16s ease-in-out infinite;
+      animation: sceneTwo 28s linear infinite, lateralMove 28s ease-in-out infinite;
     }
 
     .grade {
@@ -156,23 +158,23 @@
     }
 
     @keyframes sceneOne {
-      0%, 42% { opacity: 1; }
-      50%, 92% { opacity: 0; }
+      0%, 44% { opacity: 1; }
+      52%, 92% { opacity: 0; }
       100% { opacity: 1; }
     }
     @keyframes sceneTwo {
-      0%, 42% { opacity: 0; }
-      50%, 92% { opacity: 1; }
+      0%, 44% { opacity: 0; }
+      52%, 92% { opacity: 1; }
       100% { opacity: 0; }
     }
     @keyframes dollyIn {
       0% { transform: scale(1.02); }
-      47% { transform: scale(1.09); }
-      48%, 100% { transform: scale(1.02); }
+      51% { transform: scale(1.10); }
+      52%, 100% { transform: scale(1.02); }
     }
     @keyframes lateralMove {
-      0%, 48% { transform: scale(1.06) translateX(-1.2%); }
-      95% { transform: scale(1.06) translateX(1.2%); }
+      0%, 48% { transform: scale(1.06) translateX(-1.5%); }
+      96% { transform: scale(1.06) translateX(1.5%); }
       100% { transform: scale(1.06) translateX(-1.2%); }
     }
     @keyframes reveal {
