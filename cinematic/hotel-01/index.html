@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="KorVista Design boutique resort cinematic motion hero study.">
+  <title>Casa Solara — Boutique Resort Hero</title>
+  <link rel="preload" href="../../assets/hotel-01/suite.png" as="image">
+  <link rel="preload" href="../../assets/hotel-01/pool.png" as="image">
+  <link rel="preload" href="../../assets/hotel-01/pavilion-background.png" as="image">
+  <link rel="preload" href="../../assets/hotel-01/pavilion-foreground.png" as="image">
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #fffaf0;
+      --muted: rgba(255, 250, 240, .76);
+      --line: rgba(255, 255, 255, .30);
+      --cycle: 16.5s;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #272017;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    a { color: inherit; }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .scene {
+      position: absolute;
+      inset: -3%;
+      z-index: -4;
+      opacity: 0;
+      overflow: hidden;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      pointer-events: none;
+      will-change: transform, opacity, clip-path;
+    }
+
+    .scene-one {
+      background-image: url("../../assets/hotel-01/suite.png");
+      animation: sceneOne var(--cycle) linear infinite, suitePush var(--cycle) cubic-bezier(.22,.7,.2,1) infinite;
+    }
+
+    .scene-one::before,
+    .scene-one::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 3;
+      width: 50%;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 18px, rgba(92,66,40,.05) 22px 38px),
+        linear-gradient(90deg, rgba(203,181,149,.98), rgba(242,225,198,.98));
+      box-shadow: 0 0 42px rgba(82,60,37,.16);
+      animation-duration: var(--cycle);
+      animation-timing-function: cubic-bezier(.22,.7,.2,1);
+      animation-iteration-count: infinite;
+    }
+
+    .scene-one::before { left: 0; transform-origin: left center; animation-name: curtainLeft; }
+    .scene-one::after { right: 0; transform-origin: right center; animation-name: curtainRight; }
+
+    .scene-two {
+      background-image: url("../../assets/hotel-01/pool.png");
+      animation: sceneTwo var(--cycle) linear infinite, poolPush var(--cycle) ease-in-out infinite;
+    }
+
+    .scene-two::after {
+      content: "";
+      position: absolute;
+      inset: -30% -45%;
+      background: linear-gradient(105deg, transparent 38%, rgba(255,244,210,.46) 49%, rgba(255,255,255,.12) 54%, transparent 64%);
+      mix-blend-mode: screen;
+      transform: translateX(-55%);
+      animation: lightSweep var(--cycle) ease-in-out infinite;
+    }
+
+    .scene-three {
+      inset: 0;
+      animation: sceneThree var(--cycle) linear infinite, sunsetDrift var(--cycle) ease-in-out infinite;
+    }
+
+    .scene-three-front { z-index: 3; }
+
+    .layer {
+      position: absolute;
+      inset: -4%;
+      width: 108%;
+      height: 108%;
+      object-fit: cover;
+      object-position: center;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .layer-background { transform: scale(1.08); }
+    .layer-foreground {
+      transform: scale(1.08);
+      filter: drop-shadow(0 24px 30px rgba(39, 28, 18, .16));
+    }
+
+    .grade {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(20,16,12,.60) 0%, rgba(20,16,12,.22) 37%, transparent 68%),
+        linear-gradient(180deg, rgba(18,14,10,.16), transparent 48%, rgba(18,14,10,.30));
+      pointer-events: none;
+    }
+
+    .nav {
+      position: relative;
+      z-index: 6;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 86px;
+      padding: 0 clamp(24px, 5vw, 80px);
+      border-bottom: 1px solid var(--line);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .back { justify-self: start; text-decoration: none; color: var(--muted); }
+    .brand { justify-self: center; font-weight: 700; font-size: .86rem; }
+    .location { justify-self: end; color: var(--muted); }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      align-content: center;
+      min-height: calc(100svh - 86px);
+      padding: clamp(48px, 8vw, 110px) clamp(24px, 7vw, 112px) 118px;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .copy {
+      position: relative;
+      width: min(960px, 100%);
+      min-height: clamp(360px, 45vw, 560px);
+      perspective: 1200px;
+    }
+
+    .copy-slide {
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      opacity: 0;
+      transform-origin: right center;
+      clip-path: inset(0 0 0 0);
+      will-change: opacity, transform, clip-path, filter;
+    }
+
+    .copy-one { animation: copyOne var(--cycle) linear infinite; }
+    .copy-two { animation: copyTwo var(--cycle) linear infinite; }
+    .copy-three { animation: copyThree var(--cycle) linear infinite; }
+    .eyebrow {
+      margin: 0 0 25px;
+      color: rgba(255,255,255,.85);
+      font-size: .74rem;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4.2rem, 9.2vw, 9.5rem);
+      font-weight: 400;
+      letter-spacing: -.062em;
+      line-height: .84;
+    }
+
+    .subcopy {
+      max-width: 500px;
+      margin: 34px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.35vw, 1.18rem);
+      line-height: 1.58;
+    }
+
+    .footer-line {
+      position: absolute;
+      left: clamp(24px, 5vw, 80px);
+      right: clamp(24px, 5vw, 80px);
+      bottom: 27px;
+      z-index: 6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,.72);
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .progress { display: flex; align-items: center; gap: 8px; }
+    .progress i { display: block; width: 24px; height: 1px; background: rgba(255,255,255,.42); }
+    .progress i:nth-child(1) { animation: dotOne var(--cycle) linear infinite; }
+    .progress i:nth-child(2) { animation: dotTwo var(--cycle) linear infinite; }
+    .progress i:nth-child(3) { animation: dotThree var(--cycle) linear infinite; }
+
+    @keyframes sceneOne {
+      0%, 29% { opacity: 1; }
+      34%, 95% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes sceneTwo {
+      0%, 29% { opacity: 0; }
+      34%, 62% { opacity: 1; }
+      67%, 100% { opacity: 0; }
+    }
+    @keyframes sceneThree {
+      0%, 62% { opacity: 0; }
+      67%, 95% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes suitePush {
+      0%, 3% { transform: scale(1.01); }
+      31% { transform: scale(1.22); }
+      32%, 100% { transform: scale(1.22); }
+    }
+    @keyframes curtainLeft {
+      0%, 2% { transform: translateX(0); }
+      14%, 100% { transform: translateX(-100%); }
+    }
+    @keyframes curtainRight {
+      0%, 2% { transform: translateX(0); }
+      14%, 100% { transform: translateX(100%); }
+    }
+    @keyframes poolPush {
+      0%, 33% { transform: scale(1.01); }
+      66% { transform: scale(1.16); }
+      67%, 100% { transform: scale(1.01); }
+    }
+    @keyframes lightSweep {
+      0%, 37% { transform: translateX(-55%); opacity: 0; }
+      43% { opacity: .9; }
+      60% { transform: translateX(55%); opacity: .4; }
+      64%, 100% { transform: translateX(55%); opacity: 0; }
+    }
+    @keyframes sunsetDrift {
+      0%, 66% { transform: scale(1.12); }
+      99% { transform: scale(1.02); }
+      100% { transform: scale(1.12); }
+    }
+    @keyframes copyOne {
+      0%, 4% { opacity: 0; transform: translateY(18px); clip-path: inset(0 0 0 0); filter: blur(4px); }
+      8%, 24% { opacity: 1; transform: translateY(0) rotateY(0); clip-path: inset(0 0 0 0); filter: blur(0); }
+      31%, 100% { opacity: 0; transform: translateX(2%) rotateY(-16deg); clip-path: inset(0 0 0 102%); filter: blur(2px); }
+    }
+    @keyframes copyTwo {
+      0%, 33% { opacity: 0; transform: translateY(18px); clip-path: inset(0 0 0 0); filter: blur(4px); }
+      37%, 57% { opacity: 1; transform: translateY(0) rotateY(0); clip-path: inset(0 0 0 0); filter: blur(0); }
+      64%, 100% { opacity: 0; transform: translateX(2%) rotateY(-16deg); clip-path: inset(0 0 0 102%); filter: blur(2px); }
+    }
+    @keyframes copyThree {
+      0%, 66% { opacity: 0; transform: translateY(18px); clip-path: inset(0 0 0 0); filter: blur(4px); }
+      70%, 90% { opacity: 1; transform: translateY(0) rotateY(0); clip-path: inset(0 0 0 0); filter: blur(0); }
+      98%, 100% { opacity: 0; transform: translateX(2%) rotateY(-16deg); clip-path: inset(0 0 0 102%); filter: blur(2px); }
+    }
+    @keyframes dotOne { 0%, 29% { background:#fff; width:42px; } 34%,100% { background:rgba(255,255,255,.42); width:24px; } }
+    @keyframes dotTwo { 0%,29%,67%,100% { background:rgba(255,255,255,.42); width:24px; } 34%,62% { background:#fff; width:42px; } }
+    @keyframes dotThree { 0%,62%,100% { background:rgba(255,255,255,.42); width:24px; } 67%,95% { background:#fff; width:42px; } }
+
+    @media (max-width: 720px) {
+      .nav { grid-template-columns: 1fr auto; min-height: 72px; }
+      .brand { justify-self: end; }
+      .location { display: none; }
+      .content { align-content: end; min-height: calc(100svh - 72px); padding-bottom: 110px; }
+      .copy { min-height: clamp(330px, 55vh, 460px); }
+      h1 { font-size: clamp(3.75rem, 17vw, 6rem); }
+      .subcopy { max-width: 90%; }
+      .scene, .layer { background-position: 58% center; object-position: 58% center; }
+      .grade {
+        background:
+          linear-gradient(180deg, rgba(17,13,9,.08) 8%, rgba(17,13,9,.14) 42%, rgba(17,13,9,.78) 88%),
+          linear-gradient(90deg, rgba(17,13,9,.28), transparent 72%);
+      }
+      .motion-note { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scene, .layer, .content, .copy-slide, .progress i { animation: none !important; transform: none !important; }
+      .scene-one { opacity: 1; }
+      .scene-one::before, .scene-one::after, .scene-two, .scene-three { display: none; }
+      .copy-one { opacity: 1; clip-path: none; filter: none; }
+      .copy-two, .copy-three { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" id="hotel-hero">
+    <div class="scene scene-one" aria-hidden="true"></div>
+    <div class="scene scene-two" aria-hidden="true"></div>
+    <div class="scene scene-three scene-three-back" aria-hidden="true">
+      <img class="layer layer-background" src="../../assets/hotel-01/pavilion-background.png" alt="">
+    </div>
+    <div class="grade" aria-hidden="true"></div>
+
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="back" href="../../">← Motion Lab</a>
+      <div class="brand">Casa Solara</div>
+      <div class="location">Mediterranean Coast</div>
+    </nav>
+
+    <section class="content">
+      <div class="copy">
+        <div class="copy-slide copy-one">
+          <p class="eyebrow">Private coast · Unhurried mornings</p>
+          <h1>Wake to the<br>Mediterranean.</h1>
+          <p class="subcopy">Open the curtains to sea light, quiet architecture and a morning that asks nothing of you.</p>
+        </div>
+        <div class="copy-slide copy-two">
+          <p class="eyebrow">Sea light · Open horizons</p>
+          <h1>Follow the light<br>to the water.</h1>
+          <p class="subcopy">A private infinity pool suspended between limestone, blue sky and the edge of the coast.</p>
+        </div>
+        <div class="copy-slide copy-three">
+          <p class="eyebrow">Sunset ritual · Quiet luxury</p>
+          <h1>Stay for the<br>golden hour.</h1>
+          <p class="subcopy">Settle into the pavilion as the last light moves slowly across the sea.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="scene scene-three scene-three-front" aria-hidden="true">
+      <img class="layer layer-foreground" src="../../assets/hotel-01/pavilion-foreground.png" alt="">
+    </div>
+
+    <div class="footer-line">
+      <span class="motion-note">Curtain reveal · Light sweep · Interactive depth</span>
+      <span class="progress" aria-label="Three scene sequence"><i></i><i></i><i></i></span>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const hero = document.getElementById('hotel-hero');
+      const background = hero.querySelector('.layer-background');
+      const foreground = hero.querySelector('.layer-foreground');
+      const content = hero.querySelector('.content');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let interacting = false;
+
+      hero.addEventListener('pointermove', event => {
+        const rect = hero.getBoundingClientRect();
+        interacting = true;
+        targetX = ((event.clientX - rect.left) / rect.width - .5) * 32;
+        targetY = ((event.clientY - rect.top) / rect.height - .5) * 20;
+      });
+
+      hero.addEventListener('pointerleave', () => {
+        interacting = false;
+        targetX = 0;
+        targetY = 0;
+      });
+
+      const render = time => {
+        const driftX = interacting ? 0 : Math.sin(time * .00038) * 7;
+        const driftY = interacting ? 0 : Math.cos(time * .00031) * 3.5;
+        currentX += (targetX + driftX - currentX) * .065;
+        currentY += (targetY + driftY - currentY) * .065;
+
+        background.style.transform = `translate3d(${-currentX * .22}px, ${-currentY * .16}px, 0) scale(1.08)`;
+        content.style.transform = `translate3d(${currentX * .26}px, ${currentY * .18}px, 0)`;
+        foreground.style.transform = `translate3d(${currentX * 1.18}px, ${currentY * .86}px, 0) scale(1.08)`;
+        requestAnimationFrame(render);
+      };
+
+      requestAnimationFrame(render);
+    })();
+  </script>
+</body>
+</html>
