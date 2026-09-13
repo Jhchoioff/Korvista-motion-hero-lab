@@ -1,1 +1,136 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A growing library of cinematic and signature luxury hero experiments by KorVista Design.">
+  <title>KorVista Motion Hero Lab</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #11110f;
+      --panel: #191916;
+      --text: #f4f1e9;
+      --muted: #aaa89f;
+      --line: rgba(244, 241, 233, .16);
+      --accent: #d9ff43;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
+    a { color: inherit; }
+    .shell { width: min(1480px, calc(100% - 48px)); margin: 0 auto; }
+    header { display: flex; align-items: center; justify-content: space-between; min-height: 78px; border-bottom: 1px solid var(--line); }
+    .brand { font-size: .82rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    .count { color: var(--muted); font-size: .85rem; }
+    .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 400px); gap: 70px; align-items: end; padding: clamp(70px, 11vw, 160px) 0 clamp(64px, 9vw, 120px); }
+    .kicker, .section-label, .card-meta, .status { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; }
+    .kicker { margin: 0 0 24px; color: var(--accent); }
+    h1 { max-width: 950px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.4rem, 8.2vw, 8.5rem); font-weight: 400; letter-spacing: -.06em; line-height: .88; }
+    .intro-copy { margin: 0 0 8px; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+    .collection { padding: 0 0 clamp(88px, 12vw, 170px); }
+    .collection-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
+    .section-label { margin: 0; color: var(--muted); }
+    .section-count { color: var(--muted); font-size: .8rem; }
+    .work-list { display: grid; gap: 24px; }
+    .work-card { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); min-height: 560px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; overflow: hidden; }
+    .card-image { position: relative; min-height: 500px; overflow: hidden; }
+    .card-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 55%, rgba(12,12,10,.32)); pointer-events: none; }
+    .card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+    .work-card:hover .card-image img { transform: scale(1.035); }
+    .card-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 4vw, 60px); }
+    .card-meta { color: var(--muted); }
+    h2 { margin: 30px 0 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 4vw, 4.6rem); font-weight: 400; letter-spacing: -.045em; line-height: .95; }
+    .direction { margin: 0; color: var(--muted); line-height: 1.6; }
+    .view { display: flex; align-items: center; justify-content: space-between; margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .8rem; letter-spacing: .13em; text-transform: uppercase; }
+    .up-next { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; min-height: 190px; padding: clamp(28px, 4vw, 54px); border: 1px solid var(--line); background: linear-gradient(120deg, #1b1718, #171713); }
+    .up-next h2 { margin: 12px 0 0; font-size: clamp(2.1rem, 4vw, 4rem); }
+    .status { color: var(--accent); white-space: nowrap; }
+    footer { display: flex; justify-content: space-between; gap: 24px; padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    @media (max-width: 850px) {
+      .shell { width: min(100% - 32px, 1480px); }
+      .intro { grid-template-columns: 1fr; gap: 36px; }
+      .intro-copy { max-width: 520px; }
+      .work-card { grid-template-columns: 1fr; }
+      .card-image { min-height: 58svh; }
+      .card-copy { min-height: 340px; }
+      .up-next { grid-template-columns: 1fr; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card-image img { transition: none; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">KorVista Design · Motion Hero Lab</div>
+      <div class="count">Study 01 / Growing archive</div>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <p class="kicker">Motion studies</p>
+          <h1>One library.<br>Every experiment.</h1>
+        </div>
+        <p class="intro-copy">A working collection of cinematic and signature hero concepts—built, compared and refined before the strongest ideas move into KorVista Design.</p>
+      </section>
+      <section class="collection" aria-labelledby="cinematic-heading">
+        <div class="collection-head">
+          <p class="section-label" id="cinematic-heading">Cinematic Motion Heroes</p>
+          <span class="section-count">04 studies</span>
+        </div>
+        <div class="work-list">
+          <a class="work-card" href="cinematic/interior-01/">
+            <div class="card-image"><img src="assets/interior-01/evening.png" alt="Warm contemporary interior with layered architectural depth"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">01 · Interior Design</div>
+                <h2>Warm to<br>Daylight</h2>
+                <p class="direction">Dolly-in · Lateral movement · Dolly-out · Cohesive color grading</p>
+              </div>
+              <div class="view"><span>View full hero</span><span aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+          <a class="work-card" href="cinematic/interior-parallax/">
+            <div class="card-image"><img src="assets/interior-01/lounge.png" alt="Layered lounge interior prepared for a parallax motion study"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">02 · Interior Design</div>
+                <h2>Depth you<br>can feel</h2>
+                <p class="direction">Dolly-in · Lateral slide · Dolly-out · Layered 2.5D parallax</p>
+              </div>
+              <div class="view"><span>View parallax hero</span><span aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+          <a class="work-card" href="cinematic/hotel-01/">
+            <div class="card-image"><img src="assets/hotel-01/suite.png" alt="Oceanfront boutique resort suite framed by sheer curtains"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">03 · Boutique Hospitality</div>
+                <h2>Arrive<br>somewhere</h2>
+                <p class="direction">Curtain reveal · Pool push-in · Light sweep · Interactive depth</p>
+              </div>
+              <div class="view"><span>View resort hero</span><span aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+          <a class="work-card" href="cinematic/scroll-reveal-01/">
+            <div class="card-image"><img src="assets/scroll-reveal-01/pool.jpg" alt="Infinity pool at dusk framed by layered mountain ridges"></div>
+            <div class="card-copy">
+              <div>
+                <div class="card-meta">04 · Boutique Hospitality</div>
+                <h2>Held in<br>place</h2>
+                <p class="direction">Scroll-pinned reveal · Cross-fade sequence · Scroll-synced typography</p>
+              </div>
+              <div class="view"><span>View scroll hero</span><span aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span>Internal creative archive by KorVista Design</span>
+      <span>New studies are added as individual pages.</span>
+    </footer>
+  </div>
+</body>
+</html>
