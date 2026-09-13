@@ -1,136 +1,283 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A growing library of cinematic and signature luxury hero experiments by KorVista Design.">
-  <title>KorVista Motion Hero Lab</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #11110f;
-      --panel: #191916;
-      --text: #f4f1e9;
-      --muted: #aaa89f;
-      --line: rgba(244, 241, 233, .16);
-      --accent: #d9ff43;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: var(--bg); color: var(--text); font-family: Arial, Helvetica, sans-serif; }
-    a { color: inherit; }
-    .shell { width: min(1480px, calc(100% - 48px)); margin: 0 auto; }
-    header { display: flex; align-items: center; justify-content: space-between; min-height: 78px; border-bottom: 1px solid var(--line); }
-    .brand { font-size: .82rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-    .count { color: var(--muted); font-size: .85rem; }
-    .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 400px); gap: 70px; align-items: end; padding: clamp(70px, 11vw, 160px) 0 clamp(64px, 9vw, 120px); }
-    .kicker, .section-label, .card-meta, .status { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; }
-    .kicker { margin: 0 0 24px; color: var(--accent); }
-    h1 { max-width: 950px; margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(3.4rem, 8.2vw, 8.5rem); font-weight: 400; letter-spacing: -.06em; line-height: .88; }
-    .intro-copy { margin: 0 0 8px; color: var(--muted); font-size: 1rem; line-height: 1.65; }
-    .collection { padding: 0 0 clamp(88px, 12vw, 170px); }
-    .collection-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 22px 0; border-top: 1px solid var(--line); }
-    .section-label { margin: 0; color: var(--muted); }
-    .section-count { color: var(--muted); font-size: .8rem; }
-    .work-list { display: grid; gap: 24px; }
-    .work-card { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); min-height: 560px; background: var(--panel); border: 1px solid var(--line); text-decoration: none; overflow: hidden; }
-    .card-image { position: relative; min-height: 500px; overflow: hidden; }
-    .card-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 55%, rgba(12,12,10,.32)); pointer-events: none; }
-    .card-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-    .work-card:hover .card-image img { transform: scale(1.035); }
-    .card-copy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(28px, 4vw, 60px); }
-    .card-meta { color: var(--muted); }
-    h2 { margin: 30px 0 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 4vw, 4.6rem); font-weight: 400; letter-spacing: -.045em; line-height: .95; }
-    .direction { margin: 0; color: var(--muted); line-height: 1.6; }
-    .view { display: flex; align-items: center; justify-content: space-between; margin-top: 52px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .8rem; letter-spacing: .13em; text-transform: uppercase; }
-    .up-next { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px; min-height: 190px; padding: clamp(28px, 4vw, 54px); border: 1px solid var(--line); background: linear-gradient(120deg, #1b1718, #171713); }
-    .up-next h2 { margin: 12px 0 0; font-size: clamp(2.1rem, 4vw, 4rem); }
-    .status { color: var(--accent); white-space: nowrap; }
-    footer { display: flex; justify-content: space-between; gap: 24px; padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
-    @media (max-width: 850px) {
-      .shell { width: min(100% - 32px, 1480px); }
-      .intro { grid-template-columns: 1fr; gap: 36px; }
-      .intro-copy { max-width: 520px; }
-      .work-card { grid-template-columns: 1fr; }
-      .card-image { min-height: 58svh; }
-      .card-copy { min-height: 340px; }
-      .up-next { grid-template-columns: 1fr; }
-      footer { flex-direction: column; }
-    }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card-image img { transition: none; } }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KorVista — Signature / Scroll Reveal 01 — Held in Place</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --font-serif:'Instrument Serif', serif;
+    --font-sans:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#0b0a09;font-family:var(--font-sans);}
+
+  /* 스크롤 공간을 확보하는 spacer. 이 높이만큼 스크롤하는 동안 히어로가 화면에 고정됨 */
+  .scroll-track{
+    position:relative;
+    height:400vh; /* 길수록 리빌이 천천히 진행됨 */
+  }
+
+  /* 핀 고정되는 실제 히어로 뷰포트 */
+  .pinned{
+    position:sticky;
+    top:0;
+    height:100vh;
+    width:100%;
+    overflow:hidden;
+    background:#0b0a09;
+  }
+
+  .scene{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    will-change:opacity, transform, filter;
+  }
+
+  /* 실제 배포시엔 이 3개 div 안의 SVG 일러스트를 실제 사진(<img>/background-image)으로 교체 */
+  .scene{ background:#0b0a09; }
+  .scene svg{ position:absolute; inset:0; width:100%; height:100%; }
+
+
+  .scene img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+  }
+  .scene::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, #00000055 0%, #00000022 30%, #00000066 100%);
+  }
+
+  .particle{
+    position:absolute; border-radius:50%; background:#f4ecdf;
+    filter:blur(1px); pointer-events:none;
+  }
+
+  .grain{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    opacity:.5;
+  }
+
+  .content{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:#fff;padding:0 24px;
+  }
+  .label{
+    font-family:var(--font-sans);font-size:11px;letter-spacing:.24em;
+    color:#d9c6a3;text-transform:uppercase;margin-bottom:18px;
+    opacity:0; transform:translateY(10px);
+    will-change:opacity, transform;
+  }
+  h1{
+    font-family:var(--font-serif);font-weight:400;
+    font-size:clamp(34px,6vw,72px);line-height:1.05;margin:0 0 20px;
+    max-width:820px;
+    will-change:opacity, transform, filter;
+  }
+  p.sub{
+    font-family:var(--font-sans);font-weight:300;font-size:clamp(13px,1.4vw,17px);
+    color:#efe6d8cc;max-width:480px;line-height:1.7;margin:0;
+    will-change:opacity, transform;
+  }
+
+  .progress-rail{
+    position:fixed;right:26px;top:50%;transform:translateY(-50%);
+    display:flex;flex-direction:column;gap:10px;z-index:20;
+  }
+  .progress-rail .tick{
+    width:5px;height:5px;border-radius:50%;background:#ffffff40;
+    transition:background .3s ease, transform .3s ease;
+  }
+  .progress-rail .tick.active{ background:#f4ecdf; transform:scale(1.5); }
+
+  .scroll-hint{
+    position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+    color:#ffffff90;font-family:var(--font-sans);font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;z-index:20;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    transition:opacity .4s ease;
+  }
+  .scroll-hint .line{ width:1px;height:26px;background:#ffffff50;overflow:hidden; }
+  .scroll-hint .line::after{
+    content:'';display:block;width:100%;height:40%;background:#f4ecdf;
+    animation:travel 1.6s ease-in-out infinite;
+  }
+  @keyframes travel{
+    0%{ transform:translateY(-100%); }
+    100%{ transform:translateY(250%); }
+  }
+
+  .note{
+    max-width:760px;margin:0 auto;padding:60px 20px 120px;
+    color:#cfc6ba;font-family:var(--font-sans);font-size:13px;line-height:1.8;text-align:center;
+  }
+  .note b{ color:#f0e4d2; font-weight:500; }
+  .after-track{ background:#0b0a09; }
+
+  @media (prefers-reduced-motion: reduce){
+    .scroll-track{ height:auto; }
+    .pinned{ position:relative; }
+  }
+</style>
 </head>
 <body>
-  <div class="shell">
-    <header>
-      <div class="brand">KorVista Design · Motion Hero Lab</div>
-      <div class="count">Study 01 / Growing archive</div>
-    </header>
-    <main>
-      <section class="intro">
-        <div>
-          <p class="kicker">Motion studies</p>
-          <h1>One library.<br>Every experiment.</h1>
-        </div>
-        <p class="intro-copy">A working collection of cinematic and signature hero concepts—built, compared and refined before the strongest ideas move into KorVista Design.</p>
-      </section>
-      <section class="collection" aria-labelledby="cinematic-heading">
-        <div class="collection-head">
-          <p class="section-label" id="cinematic-heading">Cinematic Motion Heroes</p>
-          <span class="section-count">04 studies</span>
-        </div>
-        <div class="work-list">
-          <a class="work-card" href="cinematic/interior-01/">
-            <div class="card-image"><img src="assets/interior-01/evening.png" alt="Warm contemporary interior with layered architectural depth"></div>
-            <div class="card-copy">
-              <div>
-                <div class="card-meta">01 · Interior Design</div>
-                <h2>Warm to<br>Daylight</h2>
-                <p class="direction">Dolly-in · Lateral movement · Dolly-out · Cohesive color grading</p>
-              </div>
-              <div class="view"><span>View full hero</span><span aria-hidden="true">↗</span></div>
-            </div>
-          </a>
-          <a class="work-card" href="cinematic/interior-parallax/">
-            <div class="card-image"><img src="assets/interior-01/lounge.png" alt="Layered lounge interior prepared for a parallax motion study"></div>
-            <div class="card-copy">
-              <div>
-                <div class="card-meta">02 · Interior Design</div>
-                <h2>Depth you<br>can feel</h2>
-                <p class="direction">Dolly-in · Lateral slide · Dolly-out · Layered 2.5D parallax</p>
-              </div>
-              <div class="view"><span>View parallax hero</span><span aria-hidden="true">↗</span></div>
-            </div>
-          </a>
-          <a class="work-card" href="cinematic/hotel-01/">
-            <div class="card-image"><img src="assets/hotel-01/suite.png" alt="Oceanfront boutique resort suite framed by sheer curtains"></div>
-            <div class="card-copy">
-              <div>
-                <div class="card-meta">03 · Boutique Hospitality</div>
-                <h2>Arrive<br>somewhere</h2>
-                <p class="direction">Curtain reveal · Pool push-in · Light sweep · Interactive depth</p>
-              </div>
-              <div class="view"><span>View resort hero</span><span aria-hidden="true">↗</span></div>
-            </div>
-          </a>
-          <a class="work-card" href="cinematic/scroll-reveal-01/">
-            <div class="card-image"><img src="assets/scroll-reveal-01/pool.jpg" alt="Infinity pool at dusk framed by layered mountain ridges"></div>
-            <div class="card-copy">
-              <div>
-                <div class="card-meta">04 · Boutique Hospitality</div>
-                <h2>Held in<br>place</h2>
-                <p class="direction">Scroll-pinned reveal · Cross-fade sequence · Scroll-synced typography</p>
-              </div>
-              <div class="view"><span>View scroll hero</span><span aria-hidden="true">↗</span></div>
-            </div>
-          </a>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <span>Internal creative archive by KorVista Design</span>
-      <span>New studies are added as individual pages.</span>
-    </footer>
+
+<div class="scroll-track" id="track">
+  <div class="pinned">
+    <div class="scene scene-a" id="scene-a">
+      <img src="../../assets/scroll-reveal-01/lounge.jpg" alt="KorVista lounge interior">
+    </div>
+    <div class="scene scene-b" id="scene-b" style="opacity:0">
+      <img src="../../assets/scroll-reveal-01/pool.jpg" alt="KorVista infinity pool at dusk">
+    </div>
+    <div class="scene scene-c" id="scene-c" style="opacity:0">
+      <img src="../../assets/scroll-reveal-01/terrace.jpg" alt="KorVista sunset terrace">
+    </div>
+    <div class="grain"></div>
+    <div id="particles"></div>
+
+    <div class="content">
+      <span class="label" id="label">KorVista Design</span>
+      <h1 id="headline">Where you stay,<br>the space begins to know you</h1>
+      <p class="sub" id="sub">Scroll to move through the story — at your own pace.</p>
+    </div>
+
+    <div class="progress-rail">
+      <div class="tick active" data-i="0"></div>
+      <div class="tick" data-i="1"></div>
+      <div class="tick" data-i="2"></div>
+    </div>
+
+    <div class="scroll-hint" id="hint">
+      <span>Scroll</span>
+      <div class="line"></div>
+    </div>
   </div>
+</div>
+
+<div class="after-track">
+  <div class="note">
+    A warm afternoon in the lounge. A quiet pool beneath the stars. A terrace held in the last light of day.
+    As you scroll, the story moves with you — never rushed, never automatic. Pause, and the moment pauses with you.
+    <br><br>
+    This is how we want every guest to feel before they've even arrived: that the space already knows how to hold them.
+  </div>
+</div>
+
+<script>
+const track = document.getElementById('track');
+const scenes = [
+  document.getElementById('scene-a'),
+  document.getElementById('scene-b'),
+  document.getElementById('scene-c'),
+];
+const label = document.getElementById('label');
+const headline = document.getElementById('headline');
+const sub = document.getElementById('sub');
+const hint = document.getElementById('hint');
+const ticks = document.querySelectorAll('.progress-rail .tick');
+
+const headlines = [
+  ['Where you stay,', 'the space begins to know you'],
+  ['As the light shifts,', 'so does the mood'],
+  ['This isn\'t arrival,', 'it\'s a stay, designed'],
+];
+
+function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+function lerp(a, b, t){ return a + (b - a) * t; }
+
+function update(){
+  const rect = track.getBoundingClientRect();
+  const total = track.offsetHeight - window.innerHeight;
+  const scrolled = clamp(-rect.top, 0, total);
+  const progress = total > 0 ? scrolled / total : 0; // 0 ~ 1
+
+  // 3개 장면 구간으로 나눠서 진행률 계산 (0~0.33, 0.33~0.66, 0.66~1)
+  const segment = progress * (scenes.length - 1);
+  const idx = clamp(Math.floor(segment), 0, scenes.length - 2);
+  const localT = segment - idx;
+
+  scenes.forEach((s, i) => {
+    if(i === idx){ s.style.opacity = 1 - localT; }
+    else if(i === idx + 1){ s.style.opacity = localT; }
+    else { s.style.opacity = 0; }
+  });
+
+  const activeIndex = localT < 0.5 ? idx : Math.min(idx + 1, scenes.length - 1);
+  ticks.forEach((t, i) => t.classList.toggle('active', i === activeIndex));
+
+  // 헤드라인은 각 구간 진입 시 살짝 블러+슬라이드로 전환
+  const hStrings = headlines[activeIndex];
+  if(headline.dataset.current != activeIndex){
+    headline.dataset.current = activeIndex;
+    headline.style.opacity = 0;
+    headline.style.filter = 'blur(6px)';
+    headline.style.transform = 'translateY(10px)';
+    headline.innerHTML = hStrings[0] + '<br>' + hStrings[1];
+    requestAnimationFrame(() => {
+      headline.style.transition = 'opacity .5s ease, filter .5s ease, transform .5s ease';
+      headline.style.opacity = 1;
+      headline.style.filter = 'blur(0)';
+      headline.style.transform = 'translateY(0)';
+    });
+  }
+
+  // 라벨/서브텍스트는 스크롤 시작 시 페이드인, 끝나갈 때 페이드아웃
+  const introFade = clamp(progress / 0.06, 0, 1);
+  const outroFade = 1 - clamp((progress - 0.94) / 0.06, 0, 1);
+  const opacity = Math.min(introFade, outroFade);
+  label.style.opacity = opacity;
+  label.style.transform = `translateY(${lerp(10, 0, introFade)}px)`;
+  sub.style.opacity = opacity;
+
+  hint.style.opacity = progress > 0.03 ? 0 : 1;
+}
+
+window.addEventListener('scroll', update, { passive: true });
+window.addEventListener('resize', update);
+update();
+
+// 떠다니는 빛 입자 (공기감을 위한 미세 디테일)
+const particleLayer = document.getElementById('particles');
+const PARTICLE_COUNT = 22;
+const particles = [];
+for(let i = 0; i < PARTICLE_COUNT; i++){
+  const el = document.createElement('div');
+  el.className = 'particle';
+  const size = 1 + Math.random() * 2.5;
+  el.style.width = size + 'px';
+  el.style.height = size + 'px';
+  el.style.left = Math.random() * 100 + '%';
+  el.style.top = Math.random() * 100 + '%';
+  el.style.opacity = (0.15 + Math.random() * 0.35).toFixed(2);
+  particleLayer.appendChild(el);
+  particles.push({
+    el,
+    baseX: Math.random() * 100,
+    baseY: Math.random() * 100,
+    speed: 0.15 + Math.random() * 0.3,
+    drift: Math.random() * Math.PI * 2,
+  });
+}
+function animateParticles(t){
+  particles.forEach((p) => {
+    const y = (p.baseY - (t * 0.002 * p.speed * 10)) % 100;
+    const x = p.baseX + Math.sin(t * 0.0005 + p.drift) * 2;
+    p.el.style.top = (y < 0 ? y + 100 : y) + '%';
+    p.el.style.left = x + '%';
+  });
+  requestAnimationFrame(animateParticles);
+}
+requestAnimationFrame(animateParticles);
+</script>
+
 </body>
 </html>
