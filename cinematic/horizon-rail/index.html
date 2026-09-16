@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Horizon Rail — an editorial parallax motion hero study for KorVista Design.">
+  <title>Horizon Rail — Motion Hero</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ivory: #f3e8cf;
+      --ink: #11130f;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      background: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body { overflow: hidden; }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      perspective: 1200px;
+      background: #171b15;
+    }
+
+    .hero__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.012);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(6, 9, 8, .48) 0%, rgba(8, 10, 9, .14) 34%, transparent 66%),
+        linear-gradient(180deg, rgba(4, 6, 5, .14), transparent 30%, rgba(4, 6, 5, .22));
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: .19;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+      animation: grain .22s steps(2) infinite;
+    }
+
+    .brand,
+    .counter,
+    .prompt {
+      position: absolute;
+      z-index: 4;
+      color: rgba(255, 249, 234, .86);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .brand { top: 2.1rem; left: 2.5rem; }
+    .counter { top: 2.1rem; right: 2.5rem; }
+    .prompt { right: 2.5rem; bottom: 2.1rem; }
+
+    .scene-title {
+      --mx: 0deg;
+      --my: 0deg;
+      position: absolute;
+      left: clamp(2.25rem, 10vw, 10rem);
+      top: 27%;
+      z-index: 3;
+      width: min(54rem, 69vw);
+      color: var(--ivory);
+      transform-origin: left center;
+      transform:
+        perspective(1100px)
+        rotateY(calc(7deg + var(--mx)))
+        rotateX(var(--my))
+        rotateZ(-1.15deg)
+        skewY(-.8deg);
+      text-shadow: 0 2px 16px rgba(56, 35, 12, .22);
+      transition: transform .35s cubic-bezier(.2,.75,.2,1);
+    }
+
+    .scene-title__eyebrow,
+    .scene-title__headline,
+    .scene-title__copy {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      animation: reveal 1.4s cubic-bezier(.22,.76,.18,1) forwards;
+    }
+
+    .scene-title__eyebrow {
+      margin: 0 0 1.25rem;
+      font-size: clamp(.65rem, .8vw, .78rem);
+      font-weight: 700;
+      letter-spacing: .34em;
+      animation-delay: .55s;
+    }
+
+    .scene-title__headline {
+      margin: 0;
+      max-width: 9ch;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(4rem, 9.2vw, 10.5rem);
+      font-weight: 400;
+      line-height: .79;
+      letter-spacing: -.075em;
+      animation-delay: .82s;
+    }
+
+    .scene-title__copy {
+      margin: 1.65rem 0 0 .35rem;
+      max-width: 31rem;
+      font-size: clamp(.75rem, 1vw, .95rem);
+      line-height: 1.5;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation-delay: 1.3s;
+    }
+
+    .line {
+      position: absolute;
+      left: 2.5rem;
+      right: 2.5rem;
+      bottom: 4rem;
+      z-index: 4;
+      height: 1px;
+      overflow: hidden;
+      background: rgba(255,255,255,.22);
+    }
+
+    .line::after {
+      content: "";
+      display: block;
+      width: 24%;
+      height: 100%;
+      background: var(--ivory);
+      animation: progress 10s linear infinite;
+    }
+
+    @keyframes reveal {
+      0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateX(-1.5rem); }
+      100% { opacity: .94; clip-path: inset(0 0 0 0); transform: translateX(0); }
+    }
+
+    @keyframes progress {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(418%); }
+    }
+
+    @keyframes grain {
+      0% { transform: translate3d(0, 0, 0); }
+      25% { transform: translate3d(3%, -2%, 0); }
+      50% { transform: translate3d(-2%, 3%, 0); }
+      75% { transform: translate3d(1%, 4%, 0); }
+      100% { transform: translate3d(-3%, -1%, 0); }
+    }
+
+    @media (max-width: 720px) {
+      .brand { left: 1.25rem; top: 1.35rem; }
+      .counter { right: 1.25rem; top: 1.35rem; }
+      .prompt { display: none; }
+      .line { left: 1.25rem; right: 1.25rem; bottom: 2rem; }
+
+      .scene-title {
+        left: 1.25rem;
+        top: auto;
+        bottom: 14%;
+        width: 90vw;
+        transform: rotateZ(-.7deg) skewY(-.35deg);
+      }
+
+      .scene-title__headline {
+        font-size: clamp(3.8rem, 19vw, 6.5rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero::after,
+      .line::after { animation: none; }
+      .scene-title__eyebrow,
+      .scene-title__headline,
+      .scene-title__copy {
+        opacity: .94;
+        clip-path: none;
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero" id="hero">
+    <video class="hero__video" autoplay muted loop playsinline preload="metadata">
+      <source src="./horizon-rail.mp4" type="video/mp4">
+    </video>
+
+    <div class="brand">KorVista / Motion Study</div>
+    <div class="counter">03—06</div>
+
+    <section class="scene-title" id="sceneTitle" aria-label="Horizon Rail introduction">
+      <p class="scene-title__eyebrow">Horizon Rail</p>
+      <h1 class="scene-title__headline">Chasing<br>the Horizon</h1>
+      <p class="scene-title__copy">Where the journey becomes the destination.</p>
+    </section>
+
+    <div class="prompt">Move to explore</div>
+    <div class="line" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    const hero = document.querySelector('#hero');
+    const title = document.querySelector('#sceneTitle');
+    const finePointer = matchMedia('(pointer: fine)').matches;
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (finePointer && !reduceMotion) {
+      hero.addEventListener('pointermove', (event) => {
+        const x = event.clientX / innerWidth - 0.5;
+        const y = event.clientY / innerHeight - 0.5;
+        title.style.setProperty('--mx', `${x * 1.8}deg`);
+        title.style.setProperty('--my', `${y * -1.1}deg`);
+      });
+
+      hero.addEventListener('pointerleave', () => {
+        title.style.setProperty('--mx', '0deg');
+        title.style.setProperty('--my', '0deg');
+      });
+    }
+  </script>
+</body>
+</html>
